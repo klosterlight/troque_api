@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_15_014451) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_024649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_014451) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_labels_on_name", unique: true
+  end
+
+  create_table "product_labels", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "label_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_product_labels_on_label_id"
+    t.index ["product_id"], name: "index_product_labels_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.datetime "expires_at"
@@ -53,4 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_014451) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "product_labels", "labels"
+  add_foreign_key "product_labels", "products"
 end

@@ -6,6 +6,8 @@ RSpec.describe Product, type: :model do
   }
 
   describe 'associations' do
+    it { should have_many(:product_labels) }
+    it { should have_many(:labels).through(:product_labels) }
   end
 
   describe 'validations' do
