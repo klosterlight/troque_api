@@ -1,8 +1,9 @@
 class V1::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.all.paginate(paginatable_params)
     render json: {
-      data: ActiveModel::Serializer::CollectionSerializer.new(@products, serializer: ProductSerializer)
+      data: ActiveModel::Serializer::CollectionSerializer.new(@products, serializer: ProductSerializer),
+      meta: { pagination: pagination(@products, paginatable_params) }
     }, status: 200
   end
 

@@ -6,3 +6,4 @@ Scenario: A user gets all of his/her products
   Then I should receive status 200
     And I should see all the products
     And I should see the labels they belong to
+    And I should see the collection paginated

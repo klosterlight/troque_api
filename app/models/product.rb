@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  include Paginatable
+
   has_many_attached :images
   has_many :product_labels
   has_many :labels, through: :product_labels

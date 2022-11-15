@@ -12,8 +12,11 @@ Then('I should see all the products') do
 end
 
 Then('I should see the labels they belong to') do
-  binding.pry
   product = Product.find @response_data["data"][0]["id"]
   label = product.labels.first
   expect(@response_data["data"][0]["labels"][0]["name"]).to eq label.name
+end
+
+Then('I should see the collection paginated') do
+  expect(@response_data["meta"]).to include("pagination")
 end
