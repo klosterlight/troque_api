@@ -39,6 +39,9 @@ gem "bootsnap", require: false
 # Simple ActiveStorage validations
 gem 'active_storage_validations'
 
+# Serialize json easy
+gem 'active_model_serializers', '~> 0.10.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'pry'

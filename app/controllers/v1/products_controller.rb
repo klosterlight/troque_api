@@ -1,4 +1,11 @@
 class V1::ProductsController < ApplicationController
+  def index
+    @products = Product.all
+    render json: {
+      data: ActiveModel::Serializer::CollectionSerializer.new(@products, serializer: ProductSerializer)
+    }, status: 200
+  end
+
   def create
     @product = Product.new(product_params)
     if @product.save
