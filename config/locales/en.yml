@@ -30,6 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      product:
+        product_labels:
+          missing: You need at least one label
   errors:
     messages:
       content_type_invalid: "has an invalid content type"

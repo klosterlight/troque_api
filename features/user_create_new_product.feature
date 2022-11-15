@@ -30,5 +30,5 @@ Scenario: The user cannot create a new product without labels, at least one
     And I want to create a product without labels
   When I POST it to /products
   Then I should receive status 422
-    And I should receive an error message ""
+    And I should receive an error message "You need at least one label"
     And the new product should not be created

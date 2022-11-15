@@ -42,5 +42,7 @@ Given('I want to create a product without images') do
 end
 
 Given('I want to create a product without labels') do
-  pending # Write code here that turns the phrase above into concrete actions
+  @product_attributes = {
+    product: FactoryBot.attributes_for(:product, product_labels_attributes: [])
+  }
 end
