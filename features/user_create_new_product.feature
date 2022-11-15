@@ -22,7 +22,7 @@ Scenario: The user cannot create a new product with images
     And I want to create a product without images
   When I POST it to /products
   Then I should receive status 422
-    And I should receive an error message ""
+    And I should receive an error message "Images can't be blank"
     And the new product should not be created
 
 Scenario: The user cannot create a new product without labels, at least one
