@@ -10,6 +10,7 @@ end
 
 When('I POST it to \/products') do
   post v1_products_path, @product_attributes
+  @response_data = JSON.parse(last_response.body)
 end
 
 Then('I should receive status {int}') do |http_status|
@@ -21,15 +22,17 @@ Then('the new product should be created') do
 end
 
 Given('I want to create a product without name') do
-  pending # Write code here that turns the phrase above into concrete actions
+  @product_attributes = {
+    product: FactoryBot.attributes_for(:product, name: "")
+  }
 end
 
-Then('I should receive an error message {string}') do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+Then('I should receive an error message {string}') do |error_message|
+  expect(@response_data["messages"]).to include(error_message)
 end
 
 Then('the new product should not be created') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(Product.count).to eq 0
 end
 
 Given('I want to create a product without images') do

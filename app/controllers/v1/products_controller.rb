@@ -4,7 +4,7 @@ class V1::ProductsController < ApplicationController
     if @product.save
       render json: @product, status: :created
     else
-      render json: { messages: @product.error.full_messages }, status: :unprocessable_entity
+      render json: { messages: @product.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
